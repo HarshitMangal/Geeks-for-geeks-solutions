@@ -1,0 +1,20 @@
+class Solution {
+  public:
+    int minDeletions(vector<int>& arr) {
+        // code here
+        vector<int> sorted;
+        
+        for (int x : arr) {
+            
+            auto it = lower_bound(begin(sorted), end(sorted), x);
+            
+            if (it == sorted.end()) {
+                sorted.push_back(x);
+            } else {
+                *it = x;
+            }
+        }
+        
+        return arr.size() - sorted.size();
+    }
+};
